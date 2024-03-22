@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Link, useParams } from "react-router-dom";
 export default function Home() {
   const [users, setUsers] = useState([]);
-  const {id} = useParams();
+  const { id } = useParams();
   useEffect(() => {
     console.log("Hello Vamshi");
     loadUsers();
@@ -12,14 +12,18 @@ export default function Home() {
 
   const loadUsers = async () => {
     //async and await is used to tell js that to wait here until you get the respose or else it will go on executing to the next line without waiting for the response
-    const result = await axios.get("http://localhost:9090/getAllUsers");
+    const result = await axios.get(
+      "https://springbootcrudoperations-production.up.railway.app/getAllUsers"
+    );
     console.log(result.data);
     setUsers(result.data);
   };
-  const deleteUser=async(id)=>{
-    const deleted= await axios.delete(`http://localhost:9090/removeUser/${id}`);
+  const deleteUser = async (id) => {
+    const deleted = await axios.delete(
+      `https://springbootcrudoperations-production.up.railway.app/removeUser/${id}`
+    );
     loadUsers();
-  }
+  };
   // function deleteUser(id) {
   //   console.log("Hello");
   //   console.log(id);
@@ -48,7 +52,7 @@ export default function Home() {
                   <td>{user.userName}</td>
                   <td>{user.email}</td>
                   <td>
-                  <Link
+                    <Link
                       type="button"
                       class="btn btn-primary mx-2"
                       data-bs-toggle=" "
